@@ -1,0 +1,115 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/6.5.0/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@3.10.3
+3 info using node@v6.5.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/ibonapie/git/homebridge-nest',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/ibonapie/.npm/homebridge-nest/1.1.3/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/ibonapie/.npm correctMkdir not in flight; initializing
+10 info lifecycle homebridge-nest@1.1.3~prepublish: homebridge-nest@1.1.3
+11 silly lifecycle homebridge-nest@1.1.3~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/ibonapie/.npm/homebridge-nest/1.1.3/package.tgz',
+12 verbose tar pack   '/Users/ibonapie/git/homebridge-nest' ]
+13 verbose tarball /Users/ibonapie/.npm/homebridge-nest/1.1.3/package.tgz
+14 verbose folder /Users/ibonapie/git/homebridge-nest
+15 verbose addLocalTarball adding from inside cache /Users/ibonapie/.npm/homebridge-nest/1.1.3/package.tgz
+16 verbose correctMkdir /Users/ibonapie/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd homebridge-nest@1.1.3
+18 verbose afterAdd /Users/ibonapie/.npm/homebridge-nest/1.1.3/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/ibonapie/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/ibonapie/.npm/homebridge-nest/1.1.3/package/package.json written
+21 silly publish { name: 'homebridge-nest',
+21 silly publish   description: 'Nest plugin for homebridge',
+21 silly publish   version: '1.1.3',
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git://github.com/kraigm/homebridge-nest.git' },
+21 silly publish   license: 'ISC',
+21 silly publish   preferGlobal: true,
+21 silly publish   keywords: [ 'homebridge-plugin', 'nest' ],
+21 silly publish   engines: { node: '>=0.12.0', homebridge: '>=0.2.5' },
+21 silly publish   dependencies:
+21 silly publish    { bluebird: '^3.2.2',
+21 silly publish      firebase: '^2.3.2',
+21 silly publish      'lodash.debounce': '^4.0.8',
+21 silly publish      'request-promise': '^1.0.2',
+21 silly publish      'unofficial-nest-api': 'git+https://github.com/kraigm/unofficial_nodejs_nest.git#3cbd337adc32fab3b481659b38d86f9fcd6a9c02' },
+21 silly publish   readme: '# homebridge-nest\nNest plugin for [HomeBridge](https://github.com/nfarina/homebridge)\n\nThis repository contains the Nest plugin for homebridge that was previously bundled in the main `homebridge` repository. \n\n# Installation\n\n\n1. Install homebridge using: npm install -g homebridge\n2. Install this plugin using: npm install -g homebridge-nest\n3. Update your configuration file. See sample-config.json snippet below. \n\nIt is **Strongly advised that you switch to the new API** but it is not required at the moment.  It will fall back to the old API, but **no new development will be done on the old API**. \n\nUntil an alternative is determined (like Nest Weave which hasn\'t been released yet or setting up a website for generating tokens specifically for HomeBridge-Nest), you will have to setup an developer account for Nest.  Its a simple process and if you specify that it is for Individual, then you are auto approved (at least in my experience).\n\n_WARNING: Switching to the new API means it will show up as brand new device.  This is do to the fact that the unofficial API used a different device id and we have no way to link it to the official cloud device id. This means any configurations, alarms, scenes, etc to which the Nest was associated will have need to be updated with the new Nest device._\n\n_Note: The name of the device will change as well.  It matches the name displayed in the Nest app.  In my case, I originally configured the Nest app so the the "Where" of my Nest was "Hallway" and I also added a label which was "Nest", so the display was "Hallway (Nest)".  To fix the name to say "Nest", you can use the Nest app and blank out the "Label" and use the custom "Where" of "Nest". Anther option to fix the name is through HomeKit.  HomeKit allows you to rename Accessories and Services, but it requires an app like [Insteon+](https://itunes.apple.com/us/app/insteon+/id919270334?uo=2&at=11la2C) that has the ability to change the name._\n\n\n## How to Setup New API \n\n1. Go to [https://developer.nest.com](https://developer.nest.com)\n2. Choose **Sign In**\n3. Use your normal account to sign in\n4. Fill in you info in \'Step 1\'\n5. In \'Step 2\' set:\n\t* **Company Name**: _HomeBridge-Nest_\n\t* **Company URL**: _https://github.com/kraigm/homebridge-nest_\n\t* **Country**: _[Your Country]_\n\t* **Size of Company**: _Individual_\n6. Then just agree to the terms and submit\n7. Go to **Products** and create a new product\n8. Fill in:\n\t* **Product Name**: _HomeBridge_\n\t* **Description**: _Open source project to provide HomeKit integration_\n\t* **Categories**: _HomeAutomation_\n\t* **Support URL**: _https://github.com/kraigm/homebridge-nest_\n\t* **Redirect URL**:  _[LEAVE BLANK]_\n\t* **Permissions (minimum)**: \n\t\t* Enable **Thermostat** with **read/write v4**\n\t\t* Enable **Away** with **read/write v2**\n\t\t* Enable **Smoke+CO alarm** with **read v4** (if you ever might want Nest Protect)\n\t\t* Enable **Camera** with **read v2** (if you ever might want Nest Cam, motion detection only)\n9. Now you should have a product. Now locate the **Keys** section on the right of your product\'s page\n10. Copy the **Product ID** to your HomeBridge config as the **clientId** in the Nest config\n11. Copy the **Product Secret** to your HomeBridge config as the **clientSecret** in the Nest config\n12. Navigate to the **Authorization URL**\n13. Accept the terms and copy the **Pin Code** to your HomeBridge config as the **code** in the Nest config\n14. Run HomeBridge once _(do not include the **token** in the config at this time)_ and you should find a log that says something like _"CODE IS ONLY VALID ONCE! Update config to use {\'token\':\'c.5ABsTpo88k5yfNIxZlh...\'} instead."_  Copy the **_c.5ABsTpo88k5yfNIxZlh..._** portion to your HomeBridge config as the **token** in the Nest config\n15. You should be able to **restart HomeBridge** and it should succeed with the new token.\n\nAfter that you will be **FINALLY** done (Huzzah!). If the token is working correctly, you no longer NEED the other three configs (clientId, clientSecret, and code) nor the original username and password from the legacy system (but you can keep them around if you wish, they will be ignored).\n\n\n\n\n# Configuration\n\nConfiguration sample:\n\n ```\n"platforms": [\n\t\t{\n\t\t\t"platform": "Nest",\n\t\t\t\n\t\t\t"token" : "c.5ABsTpo88k5yfNIxZlh...",\n\t\t\t\n\t\t\t"clientId": "developer client id",\n\t\t\t"clientSecret": "developer client secret.",\n\t\t\t"code": "Pin Code",\n\t\t\t\n\t\t\t"username" : "username",\n\t\t\t"password" : "password"\n\t\t}\n\t],\n\n```\n\nFields: \n\n* "platform": Must always be "Nest" (required)\n* "token": The only (and final) authentication piece you need to use the new API (required for new api, after determined)\n\n* "clientId": Can be anything (required for new api, if token not yet determined)\n* "clientSecret": Can be anything (required for new api, if token not yet determined)\n* "code": Can be anything (required for new api if trying to determine token)\n\n\nLegacy Fields: \n\n* "username": Nest login username, same as app (required for legacy api)\n* "password": Nest login password, same as app (required for legacy api)\n\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: 'ba823a350f27152dcc16fa220a0934590d960399',
+21 silly publish   bugs: { url: 'https://github.com/kraigm/homebridge-nest/issues' },
+21 silly publish   homepage: 'https://github.com/kraigm/homebridge-nest#readme',
+21 silly publish   _id: 'homebridge-nest@1.1.3',
+21 silly publish   scripts: {},
+21 silly publish   _shasum: 'd74e0fbb8b3280cdd00579f01d48267daf6addd7',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name homebridge-nest
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'homebridge-nest',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   escapedName: 'homebridge-nest',
+26 silly mapToRegistry   name: 'homebridge-nest',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/homebridge-nest
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading /Users/ibonapie/.npm/homebridge-nest/1.1.3/package.tgz
+30 verbose request uri https://registry.npmjs.org/homebridge-nest
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 8:59:30 PM
+33 verbose request using bearer token for auth
+34 verbose request id 28cebe8c98e7c315
+35 http request PUT https://registry.npmjs.org/homebridge-nest
+36 http 403 https://registry.npmjs.org/homebridge-nest
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '109',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Thu, 26 Jan 2017 04:59:31 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-sjc3123-SJC',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1485406771.832131,VS0,VE133',
+37 verbose headers   vary: 'Accept-Encoding' }
+38 verbose request invalidating /Users/ibonapie/.npm/registry.npmjs.org/homebridge-nest on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: you do not have permission to publish "homebridge-nest". Are you logged in as the correct user? : homebridge-nest
+40 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+40 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+40 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:200:22)
+40 verbose stack     at emitTwo (events.js:106:13)
+40 verbose stack     at Request.emit (events.js:191:7)
+40 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1067:10)
+40 verbose stack     at emitOne (events.js:101:20)
+40 verbose stack     at Request.emit (events.js:188:7)
+40 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:988:12)
+41 verbose statusCode 403
+42 verbose pkgid homebridge-nest
+43 verbose cwd /Users/ibonapie/git/homebridge-nest
+44 error Darwin 15.6.0
+45 error argv "/usr/local/Cellar/node/6.5.0/bin/node" "/usr/local/bin/npm" "publish"
+46 error node v6.5.0
+47 error npm  v3.10.3
+48 error code E403
+49 error you do not have permission to publish "homebridge-nest". Are you logged in as the correct user? : homebridge-nest
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]
